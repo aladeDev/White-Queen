@@ -1,49 +1,37 @@
-import { useEffect } from "react";
+import { Routes, Route } from "react-router-dom";
 import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
 import Home from "./pages/Home";
+import AboutMe from "./pages/AboutMe";
 import Project from "./pages/Project";
 import Services from "./pages/Services";
-import AboutMe from "./pages/AboutMe";
+import Beyond from "./pages/Beyond";
+import Contact from "./pages/Contact";
 
-export default function App() {
-  useEffect(() => {
-    const revealTargets = document.querySelectorAll("[data-reveal]");
-
-    if (!("IntersectionObserver" in window)) {
-      revealTargets.forEach((target) =>
-        target.classList.add("opacity-100", "translate-y-0"),
-      );
-      return;
-    }
-
-    const observer = new IntersectionObserver(
-      (entries, currentObserver) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            entry.target.classList.add("opacity-100", "translate-y-0");
-            currentObserver.unobserve(entry.target);
-          }
-        });
-      },
-      { threshold: 0.12, rootMargin: "0px 0px -40px 0px" },
-    );
-
-    revealTargets.forEach((target) => observer.observe(target));
-
-    return () => observer.disconnect();
-  }, []);
-
+const App = () => {
   return (
-    <div className="site-shell">
+    <>
       <Navbar />
-      <main className="page-content">
-        <Home />
-        <AboutMe />
-        <Project />
-        <Services />
-      </main>
+
+      <Routes>
+        <Route
+          path="/"
+          element={
+            <>
+              <Home />
+              <AboutMe />
+              <Project />
+              <Services />
+              <Beyond />
+              <Contact />
+            </>
+          }
+        />
+      </Routes>
+
       <Footer />
-    </div>
+    </>
   );
-}
+};
+
+export default App;

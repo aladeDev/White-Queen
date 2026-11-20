@@ -1,7 +1,6 @@
-import whiteQurren from "./whiteQurren.png"
-import whiteQ from "./whiteQ.png"
-import whiteQc from "./whiteQc.png"
-
+import whiteQurren from "./whiteQurren.png";
+import whiteQ from "./whiteQ.png";
+import whiteQc from "./whiteQc.png";
 
 const assets = {
   whiteQurren,
